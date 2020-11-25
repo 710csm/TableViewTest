@@ -40,7 +40,7 @@ class TableTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
-        cell.textLabel?.text = items[(indexPath as NSIndexPath).row]
+        cell.textLabel?.text = items[indexPath.row]
 
         return cell
     }
@@ -58,7 +58,7 @@ class TableTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            items.remove(at: (indexPath as NSIndexPath).row)
+            items.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -75,9 +75,9 @@ class TableTableViewController: UITableViewController {
     // Override to support rearranging the table view.
     // 목록 순서 바꾸기
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let itemToMove = items[(fromIndexPath as NSIndexPath).row]
-        items.remove(at: (fromIndexPath as NSIndexPath).row)
-        items.insert(itemToMove, at: (to as NSIndexPath).row)
+        let itemToMove = items[fromIndexPath.row]
+        items.remove(at: fromIndexPath.row)
+        items.insert(itemToMove, at: to.row)
     }
     
 
